@@ -215,10 +215,39 @@
     await sleep(50);
 
     if (value) {
-      document.execCommand("insertText", false, value);
+      pasteText(element, value);
     }
 
     element.dispatchEvent(new Event("input", { bubbles: true }));
+  }
+
+  function pasteText(element, value) {
+    const dataTransfer = new DataTransfer();
+    dataTransfer.setData("text/plain", normalizeLineEndings(value));
+
+    const pasteEvent = new ClipboardEvent("paste", {
+      bubbles: true,
+      cancelable: true,
+      clipboardData: dataTransfer
+    });
+
+    const handledByPage = !element.dispatchEvent(pasteEvent);
+    if (!handledByPage) {
+      insertTextWithLineBreaks(normalizeLineEndings(value));
+    }
+  }
+
+  function insertTextWithLineBreaks(value) {
+    const lines = value.split("\n");
+
+    lines.forEach((line, index) => {
+      if (line) {
+        document.execCommand("insertText", false, line);
+      }
+      if (index < lines.length - 1) {
+        document.execCommand("insertLineBreak", false, null);
+      }
+    });
   }
 
   function isVisible(element) {
@@ -229,6 +258,10 @@
 
   function normalize(value) {
     return String(value || "").replace(/\s+/g, " ").trim().toLowerCase();
+  }
+
+  function normalizeLineEndings(value) {
+    return String(value || "").replace(/\r\n?/g, "\n");
   }
 
   function waitFor(condition, timeoutMs, timeoutMessage) {
