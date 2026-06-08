@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "WA Group Scheduler",
+  "version": "1.0.7",
+  "description": "Schedule WhatsApp Web messages to a group from your own browser.",
+  "permissions": [
+    "alarms",
+    "storage",
+    "tabs",
+    "scripting",
+    "notifications"
+  ],
+  "host_permissions": [
+    "https://web.whatsapp.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "WA Scheduler",
+    "default_popup": "popup.html"
+  },
+  "options_page": "options.html",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://web.whatsapp.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

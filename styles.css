@@ -1,0 +1,107 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 16px;
+  color: #17212b;
+  background: #f7fafc;
+}
+
+.popup {
+  width: 360px;
+}
+
+h1 {
+  margin: 0 0 12px;
+  font-size: 20px;
+}
+
+h2 {
+  font-size: 15px;
+  margin-top: 18px;
+}
+
+label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  margin: 12px 0 6px;
+}
+
+input,
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 10px;
+  background: white;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+button {
+  border: 0;
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-weight: 700;
+  cursor: pointer;
+  background: #0857C3;
+  color: white;
+}
+
+button.secondary {
+  background: #307FE2;
+}
+
+button.danger {
+  background: #d92d20;
+  font-size: 12px;
+  padding: 6px 8px;
+  margin-top: 8px;
+}
+
+#status {
+  min-height: 18px;
+  font-size: 12px;
+}
+
+.ok {
+  color: #027a48;
+}
+
+.error {
+  color: #b42318;
+}
+
+.muted {
+  color: #667085;
+}
+
+.job {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 8px;
+}
+
+.job strong,
+.job span,
+.job small,
+.job em {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.job em {
+  color: #b42318;
+  font-size: 12px;
+}

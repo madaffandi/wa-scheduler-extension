@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>WA Scheduler</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="popup">
+  <h1>WA Scheduler</h1>
+  <label>Group / Chat Name</label>
+  <input id="groupName" placeholder="Fuzzy search contact/group name">
+
+  <label>Message</label>
+  <textarea id="message" rows="5" placeholder="Message to send"></textarea>
+
+  <label>Schedule At</label>
+  <input id="scheduleAt" type="datetime-local">
+
+  <div class="actions">
+    <button id="scheduleBtn">Schedule</button>
+    <button id="testBtn" class="secondary">Test Send Now</button>
+  </div>
+
+  <p id="status"></p>
+
+  <h2>Jobs</h2>
+  <div id="jobs"></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
