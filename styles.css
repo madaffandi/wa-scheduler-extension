@@ -11,13 +11,28 @@ body {
 }
 
 h1 {
-  margin: 0 0 12px;
+  margin: 0;
   font-size: 20px;
 }
 
 h2 {
   font-size: 15px;
   margin-top: 18px;
+}
+
+.title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.version {
+  color: #475467;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 label {
@@ -104,4 +119,30 @@ button.danger {
 .job em {
   color: #b42318;
   font-size: 12px;
+}
+
+.release-panel {
+  border-top: 1px solid #e2e8f0;
+  margin-top: 16px;
+  padding-top: 12px;
+}
+
+.release-panel h2 {
+  margin: 0 0 4px;
+}
+
+.release-date {
+  margin: 0 0 8px;
+  font-size: 12px;
+}
+
+.release-list {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.release-list li {
+  margin-bottom: 6px;
 }

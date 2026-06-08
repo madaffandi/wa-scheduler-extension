@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "WA Group Scheduler",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Schedule WhatsApp Web messages to a group from your own browser.",
   "icons": {
     "16": "icon16.png",

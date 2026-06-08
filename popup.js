@@ -1,5 +1,10 @@
 const $ = (id) => document.getElementById(id);
 
+const version = $('version');
+if (version) {
+  version.textContent = `v${chrome.runtime.getManifest().version}`;
+}
+
 $('scheduleBtn').addEventListener('click', async () => {
   const job = buildJob();
   if (!job) return;

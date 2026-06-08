@@ -6,7 +6,10 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="popup">
-  <h1>WA Scheduler</h1>
+  <div class="title-row">
+    <h1>WA Scheduler</h1>
+    <span id="version" class="version"></span>
+  </div>
   <label>Group / Chat Name</label>
   <input id="groupName" placeholder="Fuzzy search contact/group name">
 
@@ -26,6 +29,9 @@
   <h2>Jobs</h2>
   <div id="jobs"></div>
 
+  <section class="release-panel" data-latest-release></section>
+
+  <script src="changelog.js"></script>
   <script src="popup.js"></script>
 </body>
 </html>

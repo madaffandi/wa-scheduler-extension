@@ -79,6 +79,7 @@ async function sendScheduledMessage(job) {
   }
 
   await waitForTabComplete(tab.id, 45000);
+  await ensureContentScript(tab.id);
 
   const response = await chrome.tabs.sendMessage(tab.id, {
     type: "SEND_WHATSAPP_MESSAGE",
@@ -91,6 +92,13 @@ async function sendScheduledMessage(job) {
   if (!response || !response.ok) {
     throw new Error(response?.error || "Content script failed to send the message.");
   }
+}
+
+async function ensureContentScript(tabId) {
+  await chrome.scripting.executeScript({
+    target: { tabId },
+    files: ["content.js"]
+  });
 }
 
 async function getOrCreateWhatsAppTab() {
