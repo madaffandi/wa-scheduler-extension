@@ -28,11 +28,7 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
 
   try {
     await sendScheduledMessage(job);
-    await updateJob(jobId, {
-      status: "sent",
-      sentAt: new Date().toISOString(),
-      lastError: ""
-    });
+    await deleteJob(jobId);
     notify("WA Scheduler", `Message sent to ${job.groupName}`);
   } catch (error) {
     await updateJob(jobId, {
@@ -54,7 +50,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     }
 
     if (message.type === "GET_JOBS") {
-      const jobs = await getJobs();
+      const jobs = await deleteExecutedJobs();
       sendResponse({ ok: true, jobs });
       return;
     }
@@ -137,7 +133,7 @@ function waitForTabComplete(tabId, timeoutMs) {
 }
 
 async function syncAlarmsFromStorage() {
-  const jobs = await getJobs();
+  const jobs = await deleteExecutedJobs();
   const now = Date.now();
 
   for (const job of jobs) {
@@ -183,6 +179,17 @@ async function deleteJob(jobId) {
   const filtered = jobs.filter((job) => job.id !== jobId);
   await chrome.storage.local.set({ [STORAGE_KEY]: filtered });
   await chrome.alarms.clear(ALARM_PREFIX + jobId);
+}
+
+async function deleteExecutedJobs() {
+  const jobs = await getJobs();
+  const activeJobs = jobs.filter((job) => !["sent", "executed"].includes(job.status));
+
+  if (activeJobs.length !== jobs.length) {
+    await chrome.storage.local.set({ [STORAGE_KEY]: activeJobs });
+  }
+
+  return activeJobs;
 }
 
 function notify(title, message) {
