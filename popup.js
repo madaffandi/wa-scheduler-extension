@@ -2,7 +2,8 @@ const $ = (id) => document.getElementById(id);
 
 const version = $('version');
 if (version) {
-  version.textContent = `v${chrome.runtime.getManifest().version}`;
+  const manifest = chrome.runtime.getManifest();
+  version.textContent = `@${manifest.author} | v${manifest.version}`;
 }
 
 $('scheduleBtn').addEventListener('click', async () => {
